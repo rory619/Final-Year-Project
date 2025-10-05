@@ -1,0 +1,11 @@
+﻿.venv/
+__pycache__/
+*.pyc
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+assets/sample_images/*
+!assets/sample_images/.gitkeep
+models/*
+!models/.gitkeep
