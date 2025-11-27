@@ -1,0 +1,7 @@
+RipeApple
+RipeBanana
+RipeOrange
+RottenBanana
+RottenOrange
+UnripeBanana
+UnripeOrange
