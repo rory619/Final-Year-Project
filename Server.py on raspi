@@ -23,6 +23,4 @@ def capture_jpeg():
     img = Image.open(fname)
     buf = io.BytesIO()
     img.save(buf, format="JPEG")
-    return Response(content=buf.getvalue(),
-                    media_type="image/jpeg",
-                    headers={"X-Image-Path": str(fname)})
+    return Response(content=buf.getvalue(),media_type="image/jpeg",headers={"X-Image-Path": str(fname)})
