@@ -1,6 +1,5 @@
 // api/predictionApi.js
 // All network calls to the Raspberry Pi live here.
-// Import PI_URL from config — it should look like "http://192.168.x.x:5000"
 
 import { PI_URL } from '../config';
 

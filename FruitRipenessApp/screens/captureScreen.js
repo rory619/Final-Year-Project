@@ -12,7 +12,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { captureWithPiCamera, predictWithPhonePhoto } from '../api/predictionApi';
 
 export default function CaptureScreen() {
-  const [photo, setPhoto]     = useState(null);   // URI of the phone photo preview
+  const [photo, setPhoto]     = useState(null);   // URI of the phone
   const [result, setResult]   = useState(null);   // { label, score, source }
   const [loading, setLoading] = useState(false);
 
@@ -33,7 +33,7 @@ export default function CaptureScreen() {
 
   // --- Option 2: Phone takes photo, Pi predicts ---
   async function usePhoneCamera() {
-    // Ask for camera permission first
+    // Ask for camera permission
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status !== 'granted') {
       Alert.alert('Permission needed', 'Please allow camera access.');
@@ -64,7 +64,6 @@ export default function CaptureScreen() {
     }
   }
 
-  // Pick a border colour for the result card based on ripeness
   function cardColour(label = '') {
     const l = label.toLowerCase();
     if (l.includes('unripe')) return '#f57f17'; // orange = not ready
@@ -84,8 +83,8 @@ export default function CaptureScreen() {
         onPress={usePiCamera}
         disabled={loading}
       >
-        <Text style={styles.buttonTitle}>🍓 Use Pi Camera</Text>
-        <Text style={styles.buttonSub}>Captures directly from the Raspberry Pi</Text>
+        <Text style={styles.buttonTitle}> Use Pi Camera</Text>
+        <Text style={styles.buttonSub}>Captures from the Raspberry Pi</Text>
       </TouchableOpacity>
 
       {/* Button: use the phone camera */}
@@ -94,7 +93,7 @@ export default function CaptureScreen() {
         onPress={usePhoneCamera}
         disabled={loading}
       >
-        <Text style={styles.buttonTitle}>📱 Use Phone Camera</Text>
+        <Text style={styles.buttonTitle}> Use Phone Camera</Text>
         <Text style={styles.buttonSub}>Takes photo here, sends to Pi for prediction</Text>
       </TouchableOpacity>
 
