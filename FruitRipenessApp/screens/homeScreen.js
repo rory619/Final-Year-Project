@@ -1,6 +1,4 @@
-// HomeScreen.js
-// The first thing the user sees.
-// Two buttons: go make a prediction, or look at past predictions.
+
  
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
@@ -16,14 +14,14 @@ export default function HomeScreen({ navigation }) {
         style={styles.greenButton}
         onPress={() => navigation.navigate('Capture')}
       >
-        <Text style={styles.buttonText}>📸 New Prediction</Text>
+        <Text style={styles.buttonText}> New Prediction</Text>
       </TouchableOpacity>
  
       <TouchableOpacity
         style={styles.blueButton}
         onPress={() => navigation.navigate('History')}
       >
-        <Text style={styles.buttonText}>📋 View History</Text>
+        <Text style={styles.buttonText}> View History</Text>
       </TouchableOpacity>
  
     </View>

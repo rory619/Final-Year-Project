@@ -2,9 +2,9 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen    from './screens/HomeScreen';
-import CaptureScreen from './screens/CaptureScreen';
-import HistoryScreen from './screens/HistoryScreen';
+import HomeScreen    from './screens/homeScreen';
+import CaptureScreen from './screens/captureScreen';
+import HistoryScreen from './screens/historyScreen';
 
 const Stack = createNativeStackNavigator();
 
