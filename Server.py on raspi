@@ -1,0 +1,26 @@
+from fastapi import FastAPI
+from fastapi.responses import Response
+from picamera2 import Picamera2
+from libcamera import controls
+from pathlib import Path
+from datetime import datetime
+from PIL import Image
+import io
+
+CAPTURE_DIR = Path.home() / "Pictures" / "fruit"  #creating a directory to save logs of captures so they are stored on the Pi
+CAPTURE_DIR.mkdir(parents=True, exist_ok=True)
+
+picam = Picamera2()
+picam.start(show_preview=False)     #initializing the camera and keep it open lets /capture respond quickly
+picam.set_controls({"AfMode": controls.AfModeEnum.Continuous,"AfRange": controls.AfRangeEnum.Macro})
+
+app = FastAPI(title="Fruit Pi Capture")    #exposing a FastAPI endpoint
+
+@app.get("/capture")     #capturing a filename with a timestamp to stop overwriting and save to disk
+def capture_jpeg():
+    fname = CAPTURE_DIR / f"fruit_{datetime.now():%Y%m%d_%H%M%S}.jpg"
+    picam.capture_file(str(fname))
+    img = Image.open(fname)
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG")
+    return Response(content=buf.getvalue(),media_type="image/jpeg",headers={"X-Image-Path": str(fname)})
