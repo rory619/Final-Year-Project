@@ -18,10 +18,9 @@ def test_history_returns_list():
     
     # Test 2 - History endpoint
     # Sends a GET request to /history and checks the server
-
     # returns a list. Can be empty if no predictions made yet.
 
-    # returns a list. Can be empty if no predictions made yet
+    
 
     response = requests.get(f"{BASE_URL}/history")
     assert response.status_code == 200
