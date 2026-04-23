@@ -23,6 +23,9 @@ def test_status():
 
 
 def test_history_returns_list():
+    # Test 2 - History endpoint
+    # Sends a GET request to /history and checks the server
+    # returns a list. Can be empty if no predictions made yet
     response = requests.get(f"{BASE_URL}/history")
     # Check the server responded without an error
     assert response.status_code == 200, (
@@ -60,10 +63,23 @@ def test_predict_with_valid_image():
     print(f"PASS - /predict returned label='{data['label']}' score={data['score']}")
 
 
+def test_predict_with_no_file():
+    # Test 4 - Error handling
+    # Sends a request to /predict with no image attached.
+    # The server should return an error, not crash.
+    response = requests.post(f"{BASE_URL}/predict")
+    assert response.status_code in [400, 422], (
+        f"Expected 400 or 422 but got {response.status_code}"
+    )
+    print(f"PASS - /predict correctly rejected empty request with {response.status_code}")
+
+
+ 
 # Run all tests
 if __name__ == "__main__":
     print("Running API tests...\n")
     test_status()
     test_history_returns_list()
     test_predict_with_valid_image()
+    test_predict_with_no_file()
     print("\nDone.")
