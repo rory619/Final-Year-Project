@@ -25,7 +25,11 @@ def test_status():
 def test_history_returns_list():
     # Test 2 - History endpoint
     # Sends a GET request to /history and checks the server
+
     # returns a list. Can be empty if no predictions made yet.
+
+    # returns a list. Can be empty if no predictions made yet
+
     response = requests.get(f"{BASE_URL}/history")
     # Check the server responded without an error
     assert response.status_code == 200, (
@@ -74,6 +78,7 @@ def test_predict_with_no_file():
     print(f"PASS - /predict correctly rejected empty request with {response.status_code}")
 
 
+
 def test_history_saves_after_prediction():
     # Test 5 - Integration test
     # Makes a prediction then checks /history to confirm
@@ -103,5 +108,6 @@ if __name__ == "__main__":
     test_history_returns_list()
     test_predict_with_valid_image()
     test_predict_with_no_file()
+
     test_history_saves_after_prediction()
     print("\nDone.")
