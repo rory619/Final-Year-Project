@@ -64,10 +64,7 @@ def test_history_saves_after_prediction():
     # Makes a prediction then checks /history to confirm
     # the result was saved by the server.
     with open("/home/rory/fruitchecker/test_images/test.jpg", "rb") as f:
-        requests.post(
-            f"{BASE_URL}/predict",
-            files={"file": ("test.jpg", f, "image/jpeg")}
-        )
+        requests.post(f"{BASE_URL}/predict",files={"file": ("test.jpg", f, "image/jpeg")} )
     response = requests.get(f"{BASE_URL}/history")
     data = response.json()
     assert len(data) > 0
