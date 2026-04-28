@@ -28,9 +28,6 @@ MODEL_PATH   = BASE_DIR / "model.tflite"
 LABELS_PATH  = BASE_DIR / "labels.txt"
 HISTORY_FILE = BASE_DIR / "history.json"
 
-# Create the captures folder
-CAPTURES_DIR.mkdir(exist_ok=True)
-
 
 # Load class labels from labels.txt (one label for every line)
 
