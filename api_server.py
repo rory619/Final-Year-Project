@@ -72,9 +72,6 @@ def run_inference(image_bytes: bytes) -> dict:
     # Add a batch dimension so the shape is now (1, height, width, 3)
     tensor = np.expand_dims(rgb_image, axis=0).astype(input_dtype)
 
-    # Normalise pixel values to 0.0-1.0
-    if input_dtype == np.float32:
-        tensor = tensor / 255.0
 
     # Plug the image into the model and run prediction
     interpreter.set_tensor(input_details["index"], tensor)
@@ -82,6 +79,8 @@ def run_inference(image_bytes: bytes) -> dict:
 
     # Read the output scores (one score per class)
     scores = interpreter.get_tensor(output_details["index"])[0]
+    print("DEBUG SCORES:", scores)
+    print("DEBUG LABELS:", labels)
 
     # Find the index of the highest score
     best_index = int(np.argmax(scores))
@@ -208,3 +207,4 @@ def get_history():
         return []
 
     return json.loads(HISTORY_FILE.read_text())
+
