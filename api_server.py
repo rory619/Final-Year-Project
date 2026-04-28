@@ -41,7 +41,7 @@ labels = [
 # Load the TFLite model using LiteRT
 
 interpreter = Interpreter(model_path=str(MODEL_PATH))
-interpreter.allocate_tensors()
+interpreter.allocate_tensors() # allocate memory to input/output tensor
 
 # Get the details of the input and output tensors
 input_details  = interpreter.get_input_details()[0]
